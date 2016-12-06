@@ -1,0 +1,41 @@
+hash: 35f43efafdbe65c972391d41a8d843daca3de3305d424d3e61005a63d4487ad7
+updated: 2016-12-06T18:03:40.672592638+01:00
+imports:
+- name: github.com/drone/drone-plugin-go
+  version: d6109f644c5935c22620081b4c234bb2263743c7
+  subpackages:
+  - plugin
+- name: github.com/golang/protobuf
+  version: df1d3ca07d2d07bba352d5b73c4313b4e2a6203e
+  subpackages:
+  - proto
+  - ptypes/any
+  - ptypes/timestamp
+- name: golang.org/x/net
+  version: fb93926129b8ec0056f2f458b1f519654814edf0
+  subpackages:
+  - context
+  - http2
+  - http2/hpack
+  - internal/timeseries
+  - trace
+- name: google.golang.org/grpc
+  version: 0032a855ba5c8a3c8e0d71c2deef354b70af1584
+  subpackages:
+  - codes
+  - credentials
+  - grpclog
+  - internal
+  - metadata
+  - naming
+  - peer
+  - transport
+- name: k8s.io/helm
+  version: dc87ea8dd0111164c720fd13b4eb8a905f97ac62
+  subpackages:
+  - pkg/helm
+  - pkg/proto/hapi/chart
+  - pkg/proto/hapi/release
+  - pkg/proto/hapi/services
+  - pkg/proto/hapi/version
+testImports: []

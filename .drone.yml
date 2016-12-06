@@ -1,0 +1,41 @@
+build:
+  image: golang:1.7
+  environment:
+    - CGO_ENABLED=0
+  commands:
+    - make deps
+    - make vet
+    - make build
+    - make test
+
+publish:
+  coverage:
+    when:
+      branch: master
+  docker:
+    username: $$DOCKER_USER
+    password: $$DOCKER_PASS
+    email: $$DOCKER_EMAIL
+    repo: mandrean/drone-kubernetes-helm
+    tag: latest
+    when:
+      branch: master
+  docker:
+    username: $$DOCKER_USER
+    password: $$DOCKER_PASS
+    email: $$DOCKER_EMAIL
+    repo: mandrean/drone-kubernetes-helm
+    tag: develop
+    when:
+      branch: develop
+
+plugin:
+  name: Kubernetes Helm
+  desc: Deploy or update a project on Kubernetes using Helm
+  type: deploy
+  image: mandrean/drone-kubernetes-helm
+  labels:
+    - kubernetes
+    - helm
+    - charts
+    - docker

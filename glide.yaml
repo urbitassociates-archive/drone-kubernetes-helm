@@ -1,0 +1,9 @@
+package: .
+import:
+- package: k8s.io/helm
+  version: ~2.0.0
+  subpackages:
+  - pkg/helm
+- package: github.com/drone/drone-plugin-go
+  subpackages:
+  - plugin

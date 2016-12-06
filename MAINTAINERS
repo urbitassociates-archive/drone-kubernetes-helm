@@ -1,0 +1,11 @@
+[people]
+  [people.mandrean]
+    name = "Sebastian Mandrean"
+    email = "sebastian.mandrean@gmail.com"
+    login = "mandrean"
+
+[org]
+  [org.core]
+    people = [
+      "mandrean"
+    ]

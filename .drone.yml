@@ -9,9 +9,6 @@ build:
     - make test
 
 publish:
-  coverage:
-    when:
-      branch: master
   docker:
     username: $$DOCKER_USER
     password: $$DOCKER_PASS
@@ -28,14 +25,3 @@ publish:
     tag: develop
     when:
       branch: develop
-
-plugin:
-  name: Kubernetes Helm
-  desc: Deploy or update a project on Kubernetes using Helm
-  type: deploy
-  image: mandrean/drone-kubernetes-helm
-  labels:
-    - kubernetes
-    - helm
-    - charts
-    - docker

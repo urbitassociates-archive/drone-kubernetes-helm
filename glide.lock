@@ -1,5 +1,5 @@
-hash: 35f43efafdbe65c972391d41a8d843daca3de3305d424d3e61005a63d4487ad7
-updated: 2016-12-06T18:03:40.672592638+01:00
+hash: 77cfd9391070f65b5bf8f0d7ffdbe54373eca869f65ec3a335925c1d07debf14
+updated: 2016-12-09T21:22:22.293081516+01:00
 imports:
 - name: github.com/drone/drone-plugin-go
   version: d6109f644c5935c22620081b4c234bb2263743c7
@@ -31,7 +31,7 @@ imports:
   - peer
   - transport
 - name: k8s.io/helm
-  version: dc87ea8dd0111164c720fd13b4eb8a905f97ac62
+  version: afcab3bb4f45478772a853e0d98306fda0a7af34
   subpackages:
   - pkg/helm
   - pkg/proto/hapi/chart

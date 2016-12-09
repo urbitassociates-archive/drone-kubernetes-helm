@@ -1,8 +1,9 @@
 .PHONY: all clean deps fmt vet test docker
 
 EXECUTABLE ?= drone-kubernetes-helm
-IMAGE ?= plugins/$(EXECUTABLE)
+IMAGE ?= mandrean/$(EXECUTABLE)
 COMMIT ?= $(shell git rev-parse --short HEAD)
+TAG ?= $(git describe --exact-match --tags HEAD)
 
 LDFLAGS = -X "main.buildCommit=$(COMMIT)"
 PACKAGES = $(shell go list ./... | grep -v /vendor/)
@@ -13,7 +14,7 @@ clean:
 	go clean -i ./...
 
 deps:
-	go get -t ./...
+	glide install
 
 fmt:
 	go fmt $(PACKAGES)

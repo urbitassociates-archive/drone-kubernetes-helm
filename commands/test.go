@@ -4,8 +4,8 @@ import (
 	"os/exec"
 )
 
-func (c *Command) Version() error {
-	cmd := exec.Command("helm", "version")
+func (c *Command) Test() error {
+	cmd := exec.Command("helm", "test", c.Release)
 	c.appendFlags(cmd)
 
 	return run(cmd)

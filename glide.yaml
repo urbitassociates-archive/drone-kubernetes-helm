@@ -1,14 +1,12 @@
 package: github.com/mandrean/drone-kubernetes-helm
-homepage: https://mandrean.io/drone-kubernetes-helm
-license: MIT
-owners:
-- name: Sebastian Mandrean
-  email: sebastian.mandrean@gmail.com
 import:
-- package: k8s.io/helm
-  version: ~2.0.2
-  subpackages:
-  - pkg/helm
-- package: github.com/drone/drone-plugin-go
+- package: github.com/Sirupsen/logrus
+- package: github.com/drone/drone-go
+  vcs: git
+  version: eaa41f7836a191224ec5702d2458db07882ec269
   subpackages:
   - plugin
+- package: github.com/imdario/mergo
+- package: github.com/joho/godotenv
+- package: github.com/urfave/cli
+- package: gopkg.in/yaml.v2

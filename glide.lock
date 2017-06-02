@@ -1,41 +1,23 @@
-hash: 77cfd9391070f65b5bf8f0d7ffdbe54373eca869f65ec3a335925c1d07debf14
-updated: 2016-12-09T21:22:22.293081516+01:00
+hash: 55c934fee5baae05f4a1354bd286a98c05572d7101655dd480f77e73317e944d
+updated: 2017-06-07T23:18:17.436111293+02:00
 imports:
-- name: github.com/drone/drone-plugin-go
-  version: d6109f644c5935c22620081b4c234bb2263743c7
+- name: github.com/drone/drone-go
+  version: eaa41f7836a191224ec5702d2458db07882ec269
+  vcs: git
   subpackages:
   - plugin
-- name: github.com/golang/protobuf
-  version: df1d3ca07d2d07bba352d5b73c4313b4e2a6203e
+- name: github.com/imdario/mergo
+  version: d806ba8c21777d504a2090a2ca4913c750dd3a33
+- name: github.com/joho/godotenv
+  version: 325433c502d409f3c3dc820098fb0cfe38d98dc7
+- name: github.com/Sirupsen/logrus
+  version: 68cec9f21fbf3ea8d8f98c044bc6ce05f17b267a
+- name: github.com/urfave/cli
+  version: d70f47eeca3afd795160003bc6e28b001d60c67c
+- name: golang.org/x/sys
+  version: b9e8d468b01f806830d387bd9a1fe96dc68129d1
   subpackages:
-  - proto
-  - ptypes/any
-  - ptypes/timestamp
-- name: golang.org/x/net
-  version: fb93926129b8ec0056f2f458b1f519654814edf0
-  subpackages:
-  - context
-  - http2
-  - http2/hpack
-  - internal/timeseries
-  - trace
-- name: google.golang.org/grpc
-  version: 0032a855ba5c8a3c8e0d71c2deef354b70af1584
-  subpackages:
-  - codes
-  - credentials
-  - grpclog
-  - internal
-  - metadata
-  - naming
-  - peer
-  - transport
-- name: k8s.io/helm
-  version: afcab3bb4f45478772a853e0d98306fda0a7af34
-  subpackages:
-  - pkg/helm
-  - pkg/proto/hapi/chart
-  - pkg/proto/hapi/release
-  - pkg/proto/hapi/services
-  - pkg/proto/hapi/version
+  - unix
+- name: gopkg.in/yaml.v2
+  version: cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b
 testImports: []

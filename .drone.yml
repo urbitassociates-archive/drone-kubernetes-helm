@@ -1,27 +1,35 @@
-build:
-  image: golang:1.7
-  environment:
-    - CGO_ENABLED=0
-  commands:
-    - make deps
-    - make vet
-    - make build
-    - make test
+matrix:
+  K8S_VERSION:
+  - 1.4.12
+  - 1.5.7
+  - 1.6.4
+  HELM_VERSION:
+  - 2.4.2
 
-publish:
-  docker:
-    username: $$DOCKER_USER
-    password: $$DOCKER_PASS
-    email: $$DOCKER_EMAIL
+pipeline:
+  dependencies:
+    image: golang:1.8-alpine
+    commands:
+    - curl -#SLO https://storage.googleapis.com/kubernetes-release/release/v${K8S_VERSION}/bin/linux/amd64/kubectl
+    - curl -#SLO https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz | tar zxvf - --strip-components 1 linux-amd64/helm
+    - curl -#SL -o ca-certificates.crt https://curl.haxx.se/ca/cacert.pem
+    - chmod +x helm kubectl
+  build:
+    image: golang:1.8-alpine
+    environment:
+    - GOOS=linux
+    - GOARCH=amd64
+    - GCO_ENABLED=0
+    commands:
+    - go get
+    - go build -a -installsuffix cgo
+    - go test
+  publish:
+    image: plugins/docker
     repo: mandrean/drone-kubernetes-helm
-    tag: latest
+    username: mandrean
+    tags: ${DRONE_TAG}-k8s-v${K8S_VERSION}-helm-${HELM_VERSION}
+    secrets: [ docker_password ]
     when:
+      event: tag
       branch: master
-  docker:
-    username: $$DOCKER_USER
-    password: $$DOCKER_PASS
-    email: $$DOCKER_EMAIL
-    repo: mandrean/drone-kubernetes-helm
-    tag: develop
-    when:
-      branch: develop

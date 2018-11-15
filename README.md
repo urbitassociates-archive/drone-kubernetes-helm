@@ -1,5 +1,3 @@
-Probably not used, we use the official version of this one. //Simon Forsman, 2018-05-23
-
 # drone-kubernetes-helm
 
 Drone plugin to deploy or update a project on Kubernetes using Helm. For the usage information and a listing of the available options please take a look at [the docs](DOCS.md).

@@ -8,20 +8,31 @@ build:
     - make build
     - make test
 
+# Publish to Quay.io
 publish:
+  # Unstable
   docker:
-    username: $$DOCKER_USER
-    password: $$DOCKER_PASS
-    email: $$DOCKER_EMAIL
-    repo: mandrean/drone-kubernetes-helm
-    tag: latest
+    registry: quay.io
+    username: $$QUAY_USERNAME
+    password: $$QUAY_PASSWORD
+    email: $$QUAY_EMAIL
+    repo: urbit/drone-kubernetes-helm
+    tag:
+    - latest
+    - $$COMMIT
     when:
+      event: push
       branch: master
+  # RC + Stable
   docker:
-    username: $$DOCKER_USER
-    password: $$DOCKER_PASS
-    email: $$DOCKER_EMAIL
-    repo: mandrean/drone-kubernetes-helm
-    tag: develop
+    registry: quay.io
+    username: $$QUAY_USERNAME
+    password: $$QUAY_PASSWORD
+    email: $$QUAY_EMAIL
+    repo: urbit/drone-kubernetes-helm
+    tag:
+    - $$TAG
+    - $$COMMIT
     when:
-      branch: develop
+      event: tag
+      branch: refs/tags/*

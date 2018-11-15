@@ -1,12 +1,16 @@
-package: github.com/mandrean/drone-kubernetes-helm
-homepage: https://mandrean.io/drone-kubernetes-helm
+package: github.com/urbitassociates/drone-kubernetes-helm
+homepage: https://github.com/urbitassociates/drone-kubernetes-helm
 license: MIT
 owners:
-- name: Sebastian Mandrean
-  email: sebastian.mandrean@gmail.com
+- name: Urb-it Product Development
+  email: pd@urbit.com
 import:
+- package: github.com/pkg/errors
+  version: ~0.8.0
+- package: github.com/golang/protobuf
+  version: ~1.1.0
 - package: k8s.io/helm
-  version: ~2.0.2
+  version: ~2.9.1
   subpackages:
   - pkg/helm
 - package: github.com/drone/drone-plugin-go

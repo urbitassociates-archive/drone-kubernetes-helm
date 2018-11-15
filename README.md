@@ -45,7 +45,7 @@ Commands. Tries to follow the Helm CLI command names and flags closely:
 ```
 deploy:
   kubernetes-helm:
-    image: mandrean/drone-kubernetes-helm
+    image: quay.io/urbit/drone-kubernetes-helm
     when:
       event: push
       branch: master
@@ -160,7 +160,7 @@ make deps docker
 ### Example
 
 ```sh
-docker run -i mandrean/drone-kubernetes-helm <<EOF
+docker run -i quay.io/urbit/drone-kubernetes-helm <<EOF
 {
       "repo": {
               "clone_url": "git://github.com/drone/drone",

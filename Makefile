@@ -1,7 +1,7 @@
 .PHONY: all clean deps fmt vet test docker
 
 EXECUTABLE ?= drone-kubernetes-helm
-IMAGE ?= mandrean/$(EXECUTABLE)
+IMAGE ?= quay.io/urbit/$(EXECUTABLE)
 COMMIT ?= $(shell git rev-parse --short HEAD)
 TAG ?= $(git describe --exact-match --tags HEAD)
 

@@ -10,7 +10,7 @@ The following is a sample Kubernetes Helm chart configuration in your `.drone.ym
 ```yaml
 deploy:
   kubernetes-helm:
-    image: mandrean/drone-kubernetes-helm
+    image: quay.io/urbit/drone-kubernetes-helm
     config:
       kubeconfig:
         api_server: https://192.168.99.100:8443

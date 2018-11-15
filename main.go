@@ -8,8 +8,8 @@ import (
 	// "github.com/drone/drone-go/plugin" // https://github.com/drone/drone-go/tree/eaa41f7836a191224ec5702d2458db07882ec269
 	"github.com/drone/drone-plugin-go/plugin"
 
-	"github.com/mandrean/drone-kubernetes-helm/commands"
-	"github.com/mandrean/drone-kubernetes-helm/config"
+	"github.com/urbitassociates/drone-kubernetes-helm/commands"
+	"github.com/urbitassociates/drone-kubernetes-helm/config"
 )
 
 type (

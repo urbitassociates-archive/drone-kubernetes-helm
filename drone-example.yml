@@ -1,6 +1,6 @@
 deploy:
   kubernetes-helm:
-    image: mandrean/drone-kubernetes-helm
+    image: quay.io/urbit/drone-kubernetes-helm
     config:
       kubeconfig:
         api_server: https://192.168.99.100:8443

@@ -3,31 +3,20 @@ package config
 import (
 	"encoding/base64"
 	"io/ioutil"
-	"os"
-	"text/template"
 	"fmt"
 )
 
 type (
-	Kubeconfig struct {
-		APIServer string `json:"api_server"`
-	}
 
-	// X509 Client Certificate authentication
-	X509 struct {
-		CA   string `json:"certificate_authority"` // cat ca.pem | base64
-		Cert string `json:"client_certificate"`    // cat client.pem | base64
-		Key  string `json:"client_key"`            // cat client-key.pem | base64
-	}
-
-	Authentication struct {
-		ClientCert X509 `json:"client_cert"`
-		X509       X509 `json:"x509"`
+	Credentials struct {
+		CA string `json:"certificate-authority"`
+		ClientCert string `json:"client-certificate"`
+		ClientKey string `json:"client-key"`
 	}
 
 	Config struct {
-		Kubeconfig     Kubeconfig     `json:"kubeconfig"`
-		Authentication Authentication `json:"authentication"`
+		Kubeconfig     string     `json:"kubeconfig"`
+		Credentials Credentials `json:"credentials"`
 	}
 )
 
@@ -44,7 +33,7 @@ const (
 // Setup writes the kubectl config and credentials to file
 func (cfg *Config) Init() error {
 	// Decode and output CA cert
-	ca, err := base64.StdEncoding.DecodeString(cfg.Authentication.X509.CA)
+	ca, err := base64.StdEncoding.DecodeString(cfg.Credentials.CA)
 	if err != nil {
 		return err
 	}
@@ -55,7 +44,7 @@ func (cfg *Config) Init() error {
 	fmt.Println("Wrote CA cert")
 
 	// Decode and output client cert
-	crt, err := base64.StdEncoding.DecodeString(cfg.Authentication.X509.Cert)
+	crt, err := base64.StdEncoding.DecodeString(cfg.Credentials.ClientCert)
 	if err != nil {
 		return err
 	}
@@ -66,7 +55,7 @@ func (cfg *Config) Init() error {
 	fmt.Println("Wrote client cert")
 
 	// Decode and output client key
-	key, err := base64.StdEncoding.DecodeString(cfg.Authentication.X509.Key)
+	key, err := base64.StdEncoding.DecodeString(cfg.Credentials.ClientKey)
 	if err != nil {
 		return err
 	}
@@ -76,20 +65,15 @@ func (cfg *Config) Init() error {
 	}
 	fmt.Println("Wrote client key")
 
-	// Output kubeconfig
-	t, err := template.ParseFiles(ROOT_PATH + KUBECONFIG)
+	// Decode and output kubeconfig
+	config, err := base64.StdEncoding.DecodeString(cfg.Kubeconfig)
 	if err != nil {
 		return err
 	}
-	f, err := os.Create(ROOT_PATH + CONFIG)
+	err = ioutil.WriteFile(ROOT_PATH + CONFIG, config, 0644)
 	if err != nil {
 		return err
 	}
-	err = t.Execute(f, cfg.Kubeconfig)
-	if err != nil {
-		return err
-	}
-	f.Close()
 	fmt.Println("Wrote kubeconfig")
 
 	return nil

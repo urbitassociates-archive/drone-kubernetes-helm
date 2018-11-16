@@ -8,15 +8,13 @@ build:
     - KUBE_CLIENT_CERT=$$KUBE_CLIENT_CERT
     - KUBE_CLIENT_KEY=$$KUBE_CLIENT_KEY
   commands:
-    - apk add --no-cache curl
+    - apk add --no-cache curl docker
     - "sed -i -e '
         s/{{KUBE_CONFIG}}/'\"$KUBE_CONFIG\"'/g;
         s/{{KUBE_CA}}/'\"$KUBE_CA\"'/g;
         s/{{KUBE_CLIENT_CERT}}/'\"$KUBE_CLIENT_CERT\"'/g;
         s/{{KUBE_CLIENT_KEY}}/'\"$KUBE_CLIENT_KEY\"'/g;
-      ' ./test-drone-config.json"
-    - curl https://get.docker.io/builds/Linux/x86_64/docker-latest -o /usr/local/bin/docker
-    - chmod +x /usr/local/bin/docker 
+      ' ./test-drone-config.json" 
     - docker -H unix:///var/run/docker.sock build --no-cache . -t test
     - echo "with H" && docker -H unix:///var/run/docker.sock images
     - echo "no H" && docker images

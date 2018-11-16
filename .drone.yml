@@ -16,8 +16,8 @@ build:
         s/{{KUBE_CLIENT_CERT}}/'\"$KUBE_CLIENT_CERT\"'/g;
         s/{{KUBE_CLIENT_KEY}}/'\"$KUBE_CLIENT_KEY\"'/g;
       ' ./test-drone-config.json" 
-    - docker -H unix:///var/run/docker.sock build --no-cache . -t test
-    - echo "with H" && docker -H unix:///var/run/docker.sock images
+    - docker build --no-cache . -t test
+    - echo "with H" && docker images
     - echo "no H" && docker images
     - docker run -i test < test-drone-config.json
 

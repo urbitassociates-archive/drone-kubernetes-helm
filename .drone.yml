@@ -1,26 +1,3 @@
-build:
-  image: alpine:3.8
-  volumes:
-    - /root/.docker:/root/.docker
-    - /var/run/docker.sock:/var/run/docker.sock
-  environment:
-    - KUBE_CONFIG=$$KUBE_CONFIG
-    - KUBE_CA=$$KUBE_CA
-    - KUBE_CLIENT_CERT=$$KUBE_CLIENT_CERT
-    - KUBE_CLIENT_KEY=$$KUBE_CLIENT_KEY
-  commands:
-    - apk add --no-cache curl docker
-    - "sed -i -e '
-        s/{{KUBE_CONFIG}}/'\"$KUBE_CONFIG\"'/g;
-        s/{{KUBE_CA}}/'\"$KUBE_CA\"'/g;
-        s/{{KUBE_CLIENT_CERT}}/'\"$KUBE_CLIENT_CERT\"'/g;
-        s/{{KUBE_CLIENT_KEY}}/'\"$KUBE_CLIENT_KEY\"'/g;
-      ' ./test-drone-config.json" 
-    - docker build --no-cache . -t test
-    - echo "with H" && docker images
-    - echo "no H" && docker images
-    - docker run -i test < test-drone-config.json
-
 # Publish to Quay.io
 publish:
   # Unstable

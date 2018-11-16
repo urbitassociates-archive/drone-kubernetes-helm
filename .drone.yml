@@ -1,5 +1,7 @@
 build:
   image: alpine:3.8
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
   environment:
     - KUBE_CONFIG=$$KUBE_CONFIG
     - KUBE_CA=$$KUBE_CA
@@ -16,6 +18,8 @@ build:
     - curl https://get.docker.io/builds/Linux/x86_64/docker-latest -o /usr/local/bin/docker
     - chmod +x /usr/local/bin/docker 
     - docker -H unix:///var/run/docker.sock build --no-cache . -t test
+    - echo "with H" && docker -H unix:///var/run/docker.sock images
+    - echo "no H" && docker images
     - docker run -i test < test-drone-config.json
 
 # Publish to Quay.io

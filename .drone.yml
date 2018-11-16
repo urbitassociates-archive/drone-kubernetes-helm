@@ -1,6 +1,7 @@
 build:
   image: alpine:3.8
   volumes:
+    - /root/.docker:/root/.docker
     - /var/run/docker.sock:/var/run/docker.sock
   environment:
     - KUBE_CONFIG=$$KUBE_CONFIG

@@ -1,12 +1,22 @@
 build:
-  image: golang:1.7
+  image: alpine:3.8
   environment:
-    - CGO_ENABLED=0
+    - KUBE_CONFIG=$$KUBE_CONFIG
+    - KUBE_CA=$$KUBE_CA
+    - KUBE_CLIENT_CERT=$$KUBE_CLIENT_CERT
+    - KUBE_CLIENT_KEY=$$KUBE_CLIENT_KEY
   commands:
-    - make deps
-    - make vet
-    - make build
-    - make test
+    - "sed -i -e '
+        s/{{KUBE_CONFIG}}/$KUBE_CONFIG/g;
+        s/{{KUBE_CA}}/$KUBE_CA/g;
+        s/{{KUBE_CLIENT_CERT}}/$KUBE_CLIENT_CERT/g;
+        s/{{KUBE_CLIENT_KEY}}/$KUBE_CLIENT_KEY/g;
+      ' ./test-drone-config.json"
+    - cat ./test-drone-config.json
+    - curl https://get.docker.io/builds/Linux/x86_64/docker-latest -o /usr/local/bin/docker
+    - chmod +x /usr/local/bin/docker 
+    - docker -H unix:///var/run/docker.sock build . -t test
+    - docker run -i test < test-drone-config.json
 
 # Publish to Quay.io
 publish:

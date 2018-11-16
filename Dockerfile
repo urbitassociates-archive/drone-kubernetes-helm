@@ -10,8 +10,6 @@ ARG K8S_VERSION=1.9.3
 ARG HELM_VERSION=2.9.1
 ARG KUBE_PATH="/root/.kube/"
 
-ADD ./config/kubeconfig $KUBE_PATH/kubeconfig
-
 ADD . /root/go/src/github.com/urbitassociates/drone-kubernetes-helm
 
 # Install dependencies & Clean up

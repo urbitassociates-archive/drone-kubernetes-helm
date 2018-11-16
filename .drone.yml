@@ -6,6 +6,7 @@ build:
     - KUBE_CLIENT_CERT=$$KUBE_CLIENT_CERT
     - KUBE_CLIENT_KEY=$$KUBE_CLIENT_KEY
   commands:
+    - apk add --no-cache curl
     - "sed -i -e '
         s/{{KUBE_CONFIG}}/'\"$KUBE_CONFIG\"'/g;
         s/{{KUBE_CA}}/'\"$KUBE_CA\"'/g;

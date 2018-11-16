@@ -5,6 +5,7 @@ routes/
 assets/
 .env
 drone-kubernetes-helm
+test-drone-config.json
 
 # OSX
 .DS_Store

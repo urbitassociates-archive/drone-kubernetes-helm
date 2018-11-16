@@ -13,7 +13,7 @@ type (
 		Chart      string                   `json:"chart"`      // "store-api"
 		Flags      []map[string]interface{} `json:"flags"`      // ["namespace"] = "kube-system"
 		Filter     string                   `json:"filter"`     // "dev"
-		SubCommand string                   `json:"subcommand"` // "values"
+		SubCommand string                   `json:"command"`    // "values"
 		Args       []string                 `json:"args"`       // ["name", "url"]
 	}
 )

@@ -1,37 +1,62 @@
-hash: 77cfd9391070f65b5bf8f0d7ffdbe54373eca869f65ec3a335925c1d07debf14
-updated: 2016-12-09T21:22:22.293081516+01:00
+hash: 7cb8b2950d770189a9bf31926352f86625125b4614c81f3b8b3fa1a80194af62
+updated: 2018-11-16T08:15:16.7441786Z
 imports:
 - name: github.com/drone/drone-plugin-go
   version: d6109f644c5935c22620081b4c234bb2263743c7
   subpackages:
   - plugin
 - name: github.com/golang/protobuf
-  version: df1d3ca07d2d07bba352d5b73c4313b4e2a6203e
+  version: b4deda0973fb4c70b50d226b1af49f3da59f5265
   subpackages:
   - proto
+  - ptypes
   - ptypes/any
+  - ptypes/duration
   - ptypes/timestamp
+- name: github.com/pkg/errors
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: golang.org/x/net
-  version: fb93926129b8ec0056f2f458b1f519654814edf0
+  version: adae6a3d119ae4890b46832a2e88a95adc62b8e7
   subpackages:
   - context
+  - http/httpguts
   - http2
   - http2/hpack
+  - idna
   - internal/timeseries
   - trace
-- name: google.golang.org/grpc
-  version: 0032a855ba5c8a3c8e0d71c2deef354b70af1584
+- name: golang.org/x/text
+  version: 6f44c5a2ea40ee3593d98cdcc905cc1fdaa660e2
   subpackages:
+  - secure/bidirule
+  - transform
+  - unicode/bidi
+  - unicode/norm
+- name: google.golang.org/genproto
+  version: b5d43981345bdb2c233eb4bf3277847b48c6fdc6
+  subpackages:
+  - googleapis/rpc/status
+- name: google.golang.org/grpc
+  version: 5ffe3083946d5603a0578721101dc8165b1d5b5f
+  subpackages:
+  - balancer
   - codes
+  - connectivity
   - credentials
+  - grpclb/grpc_lb_v1/messages
   - grpclog
   - internal
+  - keepalive
   - metadata
   - naming
   - peer
+  - resolver
+  - stats
+  - status
+  - tap
   - transport
 - name: k8s.io/helm
-  version: afcab3bb4f45478772a853e0d98306fda0a7af34
+  version: 20adb27c7c5868466912eebdf6664e7390ebe710
   subpackages:
   - pkg/helm
   - pkg/proto/hapi/chart

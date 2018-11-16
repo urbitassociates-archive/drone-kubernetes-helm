@@ -9,3 +9,7 @@ Build the container:
 ```
 docker build . -t docker-kubernetes-helm:local-test
 ```
+
+## How to test
+
+Run the `test.sh` file
